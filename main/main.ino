@@ -13,11 +13,6 @@ Servo myservo;
 
 ESP8266WiFiMulti WiFiMulti;
 
-enum ServoControl{
-    OPEN,
-    CLOSE
-};
-
 void setup(){ //初期化タスク
     myservo.attach(0); //モーター制御用ピンとして使用
     pinMode(2,OUTPUT); //エラー表示用LEDピンとして使用
