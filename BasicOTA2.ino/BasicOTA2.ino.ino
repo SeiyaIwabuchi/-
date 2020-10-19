@@ -56,7 +56,8 @@ void setup() {
     Serial.println("Connection Failed!");
     errorHandling(2);
   }
-  
+  while(WiFi.waitForConnectResult() != WL_CONNECTED) ctlLed();
+  errorHandling(-1);
   ArduinoOTA.onStart([]() {
     String type;
     if (ArduinoOTA.getCommand() == U_FLASH) {
@@ -158,7 +159,7 @@ void servoOffTimer(){
     digitalWrite(PIN_SERVO,0);
   }
 }
-
+//eが0の時消灯,1の時点灯,2の時点滅
 void errorHandling(int e){ //エラー処理タスク
   Serial.printf("[errorHandling] arg:%d\n",e);
   if(e == -1) setCtlLed(0,1000);
